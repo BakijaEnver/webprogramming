@@ -17,7 +17,7 @@ app.get('/', function(request, response){
 });
 
 app.get('/hello-world', function(request, response){
-    response.send('<h1>his is first expreess app hello world.</h1>');
+    response.send('<h1>hisd is first expreess app hello world.</h1>');
 });
 
 app.listen(3000, function(){
