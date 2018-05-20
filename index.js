@@ -12,11 +12,14 @@ app.use('/', express.static('examples'));
 app.use(express.json());       // to support JSON-encoded bodies
 app.use(express.urlencoded()); // to support URL-encoded bodies
 
+<<<<<<< HEAD
 providers = [
   {'id':1,'name': 'Vodovod','reference_number': 'ASB15215'},
   {'id':2,'name': 'Elektroprivreda','reference_number': 'SRAS8184'},
   {'id':3,'name': 'Kablovska','reference_number': 'TSA9128'}
 ]
+=======
+>>>>>>> 11ace66afae513b95b0a58a15e1dbed7051a52d9
 
 app.use('/rest/v1/',function(request,response,next){
   jwt.verify(request.get('JWT'), jwt_secret, function(error, decoded) {      
@@ -131,4 +134,7 @@ MongoClient.connect('mongodb://localhost:27017/adpicker', (err, database) => {
   db = database
   app.listen(3000, () => console.log('Example app listening on port 3000!'))
 })
+<<<<<<< HEAD
 
+=======
+>>>>>>> 11ace66afae513b95b0a58a15e1dbed7051a52d9
