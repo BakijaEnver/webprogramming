@@ -7,6 +7,13 @@ app.controller('sidebarCtrl', function($scope, $location, $http){
         return false;
     }
 
+    $scope.check_reg = function(){
+        if(localStorage.getItem('reg')){
+            return true;
+        }
+        return false;
+    }
+
     $scope.login = function(credentials){
         $http.post('/login', credentials).then(function(response){
             localStorage.setItem('user',response.data.token)
@@ -15,9 +22,27 @@ app.controller('sidebarCtrl', function($scope, $location, $http){
         }
     }
 
+    $scope.register = function(credentials){
+        $http.post('/register', credentials).then(function(response){
+           localStorage.setItem('reg', response.data.token);
+        }),function(error){
+            console.log(error);
+        }
+    }
+
     $scope.logout = function(){
         localStorage.clear();
+        localStorage.setItem('reg', "random");
     }
+
+    $scope.goLog = function () {
+        localStorage.clear();
+        localStorage.setItem('reg', "random");
+      };
+
+    $scope.goReg = function () {
+        localStorage.clear();
+    };
 
     $scope.getClass = function (path) {
         if (path == '/dashboard' && $location.path() == '/') return 'active';

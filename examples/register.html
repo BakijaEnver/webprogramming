@@ -1,0 +1,67 @@
+<div class="wrapper" style="display: table; width: 100%">
+    <div class="content" style="vertical-align: middle; display:  table-cell;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4 col-xs-0">
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <div class="card">
+                        <div class="card-header" data-background-color="black">
+                            <h4 class="title">Ad Picker</h4>
+                            <p class="category">Create your account</p>
+                        </div>
+                        <div class="card-content">
+                            <form>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Username</label>
+                                            <input type="text" ng-model="credentials.username" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Password</label>
+                                            <input type="password" ng-model="credentials.password" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Location</label>
+                                            <input type="text" ng-model="credentials.location" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Age</label>
+                                            <input type="number" ng-model="credentials.age" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group label-floating">
+                                            <label class="control-label">Interests</label>
+                                            <input type="text" ng-model="credentials.interests" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-primary pull-left" data-background-color="black" ng-click="goLog()">Login</button>
+                                <button type="submit" class="btn btn-primary pull-right" data-background-color="black" ng-click="register(credentials)">Register</button>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-0">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

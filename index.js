@@ -8,10 +8,17 @@ var jwt    = require('jsonwebtoken');
 var MongoId = require('mongodb').ObjectID;
 var db;
 
+
+
 app.use('/', express.static('examples'));
 app.use(express.json());       // to support JSON-encoded bodies
 app.use(express.urlencoded()); // to support URL-encoded bodies
 
+providers = [
+  {'id':1,'name': 'Vodovod','reference_number': 'ASB15215'},
+  {'id':2,'name': 'Elektroprivreda','reference_number': 'SRAS8184'},
+  {'id':3,'name': 'Kablovska','reference_number': 'TSA9128'}
+]
 
 app.use('/rest/v1/',function(request,response,next){
   jwt.verify(request.get('JWT'), jwt_secret, function(error, decoded) {      
@@ -35,7 +42,7 @@ app.use('/rest/v1/',function(request,response,next){
 app.post('/login', function(request, response){
   var user = request.body;
   //db.collection("users").insert( { "username" : "kum@kum.com", "password" : "password" } );
-
+  
   db.collection("users").findOne({'username': user.username, 'password': user.password}, function(error, user) {
     if (error){
       throw error;
@@ -55,6 +62,26 @@ app.post('/login', function(request, response){
       }
     }
   });
+});
+
+app.post('/register', function(request, response){
+  var user = request.body;
+  
+  db.collection("users").insert( { "username" : "kum@kum.com", "password" : "password" } , function(error) {
+    if (error){
+      throw error;
+    }
+  }
+);  
+  var token = jwt.sign(user, jwt_secret, {
+    expiresIn: 20000 
+  });
+  response.send({
+    success: true,
+    message: 'Registred',
+    token: token
+  })
+  console.log(user.username);
 });
 
 app.get('/rest/v1/bills', function(request, response){
@@ -126,3 +153,4 @@ MongoClient.connect('mongodb://localhost:27017/adpicker', (err, database) => {
   db = database
   app.listen(3000, () => console.log('Example app listening on port 3000!'))
 })
+

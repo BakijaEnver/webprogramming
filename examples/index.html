@@ -22,11 +22,14 @@
 </head>
 
 <body>
-    <div ng-if="!check_login()">
+    <div ng-if="!check_reg()">
+        <div ng-include="'register.html'"></div>
+    </div>
+    <div ng-if="check_reg() && !check_login()">
         <div ng-include="'login.html'"></div>
     </div>
     <div ng-if="check_login()">
-        <div ng-include="'racunninja.html'"></div>
+            <div ng-include="'adpicker.html'"></div>
     </div>
 </body>
 <script src="assets/js/angular.min.js"></script>
@@ -64,6 +67,8 @@
             controller : "tableController"
         }).when("/providers", {
             templateUrl : "views/providers.html"
+        }).when("/login", {
+            templateUrl : "views/login.html"
         });
     });
 </script>

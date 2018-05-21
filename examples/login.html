@@ -16,7 +16,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Username</label>
-                                            <input type="email" ng-model="credentials.username" class="form-control">
+                                            <input type="text" ng-model="credentials.username" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -28,6 +28,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                <button type="submit" class="btn btn-primary pull-left" data-background-color="black" ng-click="goReg()">Register</button>
                                 <button type="submit" class="btn btn-primary pull-right" data-background-color="black" ng-click="login(credentials)">Login</button>
                                 <div class="clearfix"></div>
                             </form>
