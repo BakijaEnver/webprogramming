@@ -1,21 +1,21 @@
 {
-  "name": "racunninja",
+  "name": "adpicker",
   "version": "1.0.0",
-  "description": "Household income application",
+  "description": "Ad picker",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dinokeco/racunninja.git"
+    "url": "git+https://github.com/baksbani/webprogramming.git"
   },
   "author": "dino",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/dinokeco/racunninja/issues"
+    "url": "https://github.com/baksbani/webprogramming.git"
   },
-  "homepage": "https://github.com/dinokeco/racunninja#readme",
+  "homepage": "https://github.com/baksbani/webprogramming",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.3",

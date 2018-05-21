@@ -148,7 +148,7 @@ app.get('/rest/v1/report', function(request, response){
   );
 });
 
-MongoClient.connect('mongodb://localhost:27017/adpicker', (err, database) => {
+MongoClient.connect('mongodb://localhost:27017/webprogramming', (err, database) => {
   if (err) return console.log(err)
   db = database
   app.listen(3000, () => console.log('Example app listening on port 3000!'))
