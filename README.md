@@ -1,5 +1,5 @@
-# racunninja
+# adpicker
 
-Household income application
+ad picker web application
 
 https://ibu.edu.ba
