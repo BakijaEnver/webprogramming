@@ -6,6 +6,7 @@ const jwt_secret = 'WU5CjF8fHxG40S2t7oyk';
 
 var jwt    = require('jsonwebtoken');
 var MongoId = require('mongodb').ObjectID;
+var md5 = require('md5');
 var db;
 
 
@@ -43,7 +44,7 @@ app.post('/login', function(request, response){
   var user = request.body;
   //db.collection("users").insert( { "username" : "kum@kum.com", "password" : "password" } );
   
-  db.collection("users").findOne({'username': user.username, 'password': user.password}, function(error, user) {
+  db.collection("users").findOne({'username': user.username, 'password': md5(user.password)}, function(error, user) {
     if (error){
       throw error;
     }else{
@@ -67,7 +68,7 @@ app.post('/login', function(request, response){
 app.post('/register', function(request, response){
   var user = request.body;
   
-  db.collection("users").insert( { "username" : user.username, "password" : user.password } , function(error) {
+  db.collection("users").save( { "username" : user.username, "password" : md5(user.password) , "location" : user.location, "age" : user.age, "interests" : user.interests} , function(error) {
     if (error){
       throw error;
     }
@@ -80,7 +81,7 @@ app.post('/register', function(request, response){
     message: 'Registred',
     token: token
   })
-  console.log(user.username);
+  
 });
 
 app.get('/rest/v1/bills', function(request, response){
