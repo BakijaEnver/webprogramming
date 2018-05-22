@@ -68,7 +68,7 @@ app.post('/login', function(request, response){
 app.post('/register', function(request, response){
   var user = request.body;
   
-  db.collection("users").save( { "username" : user.username, "password" : md5(user.password) , "location" : user.location, "age" : user.age, "interests" : user.interests} , function(error) {
+  db.collection("users").save( { "username" : user.username, "password" : md5(user.password) , "location" : user.location, "age" : user.age, "interests" : user.interests , "type" : user.type} , function(error) {
     if (error){
       throw error;
     }
@@ -81,7 +81,7 @@ app.post('/register', function(request, response){
     message: 'Registred',
     token: token
   })
-  
+
 });
 
 app.get('/rest/v1/bills', function(request, response){
