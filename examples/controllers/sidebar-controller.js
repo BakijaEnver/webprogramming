@@ -16,7 +16,7 @@ app.controller('sidebarCtrl', function($scope, $location, $http){
 
     $scope.login = function(credentials){
         $http.post('/login', credentials).then(function(response){
-            localStorage.setItem('user',response.data.token)
+            localStorage.setItem('user',response.data.token);
             $location.path("/");
         }),function(error){
             console.log(error);
