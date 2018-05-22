@@ -6,6 +6,7 @@
                 <p class="category">Complete your profile</p>
             </div>
             <div class="card-content">
+               <div ng-repeat="user in users">
                 <form name="add_user_form">
                     <div class="row">
                         <div class="col-md-12">
@@ -16,7 +17,14 @@
                             </div>
                         </div>
                     </div>
-            
+                    
+                    
+                        <div>{{user.username}}</div>
+                        <div>{{user.location}}</div>
+                        <div>{{user.age}}</div>
+                        <div>{{user.familystatus}}</div>
+                        <div>{{user.interests}}</div>
+                    
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group label-floating">
@@ -75,6 +83,7 @@
                     <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
                     <div class="clearfix"></div>
                 </form>
+              </div>
             </div>
         </div>
     </div>

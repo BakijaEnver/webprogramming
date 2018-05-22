@@ -40,9 +40,10 @@ app.use('/rest/v1/',function(request,response,next){
     }
   });  
 })
+
+var usr = "";
 app.post('/login', function(request, response){
   var user = request.body;
-
 
   db.collection("users").findOne({'username': user.username, 'password': md5(user.password)}, function(error, user) {
     if (error){
@@ -52,7 +53,7 @@ app.post('/login', function(request, response){
         var token = jwt.sign(user, jwt_secret, {
           expiresIn: 20000 
         });
-    
+        usr = user.username;
         response.send({
           success: true,
           message: 'Authenticated',
@@ -82,6 +83,15 @@ app.post('/register', function(request, response){
     token: token
   })
 
+});
+
+app.get('/user', function(request, response){
+  db.collection('users').find({username : usr}).toArray((err, users) => {
+    if (err) return console.log(err);
+    response.setHeader('Content-Type', 'application/json');
+    response.send(users);
+    
+  })
 });
 
 app.get('/rest/v1/bills', function(request, response){
