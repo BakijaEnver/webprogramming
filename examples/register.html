@@ -65,8 +65,22 @@
                                             <div class="col-md-8"> <label class="control-label">Regular User</label></div>
                                                 <div class="col-md-4" style="position: relative;top: -22px;"> <input type="radio" name="type" ng-model="credentials.type" value="regular" ></div>
                                         </div>
-                                    </div>
-                                                                
+                                    </div>                   
+                                </div>
+                                <div class="row">
+                                        <div class="col-md-6">
+                                                <div class="form-group label-floating">
+                                                    <div class="col-md-6"> <label class="control-label">Family Status: </label></div>
+                                                        <div class="col-md-4" style="position: relative;top: -22px;"> 
+                                                            <select name="status" class="control-label" ng-model="credentials.family">
+                                                                <option value="married">Married</option>
+                                                                <option value="single">Single</option>
+                                                                <option value="complicated">Complicated</option>
+                                                                <option value="notdefined">Not Defined</option>
+                                                              </select>
+                                                            </div>
+                                                </div>
+                                        </div>
                                 </div>
                                 <button type="button" class="btn btn-primary pull-left" data-background-color="black" ng-click="goLog()">Login</button>
                                 <button type="submit" class="btn btn-primary pull-right" data-background-color="black" ng-click="register(credentials)">Register</button>

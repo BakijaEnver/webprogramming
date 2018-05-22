@@ -47,6 +47,10 @@ app.controller('sidebarCtrl', function($scope, $location, $http){
         $location.path("/register");
     };
 
+    $scope.getUsername = function() {
+
+    }
+
     $scope.getClass = function (path) {
         if (path == '/dashboard' && $location.path() == '/') return 'active';
         return ($location.path() === path) ? 'active' : '';

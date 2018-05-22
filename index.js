@@ -42,8 +42,8 @@ app.use('/rest/v1/',function(request,response,next){
 })
 app.post('/login', function(request, response){
   var user = request.body;
-  //db.collection("users").insert( { "username" : "kum@kum.com", "password" : "password" } );
-  
+
+
   db.collection("users").findOne({'username': user.username, 'password': md5(user.password)}, function(error, user) {
     if (error){
       throw error;
@@ -68,7 +68,7 @@ app.post('/login', function(request, response){
 app.post('/register', function(request, response){
   var user = request.body;
   
-  db.collection("users").save( { "username" : user.username, "password" : md5(user.password) , "location" : user.location, "age" : user.age, "interests" : user.interests , "type" : user.type} , function(error) {
+  db.collection("users").save( { "username" : user.username, "password" : md5(user.password) , "location" : user.location, "age" : user.age, "interests" : user.interests , "type" : user.type, "familystatus" : user.family} , function(error) {
     if (error){
       throw error;
     }
