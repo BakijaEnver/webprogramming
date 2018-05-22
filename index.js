@@ -67,12 +67,11 @@ app.post('/login', function(request, response){
 app.post('/register', function(request, response){
   var user = request.body;
   
-  db.collection("users").insert( { "username" : "kum@kum.com", "password" : "password" } , function(error) {
+  db.collection("users").insert( { "username" : user.username, "password" : user.password } , function(error) {
     if (error){
       throw error;
     }
-  }
-);  
+  });  
   var token = jwt.sign(user, jwt_secret, {
     expiresIn: 20000 
   });

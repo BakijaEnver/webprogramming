@@ -17,6 +17,7 @@ app.controller('sidebarCtrl', function($scope, $location, $http){
     $scope.login = function(credentials){
         $http.post('/login', credentials).then(function(response){
             localStorage.setItem('user',response.data.token)
+            $location.path("/");
         }),function(error){
             console.log(error);
         }
@@ -38,10 +39,12 @@ app.controller('sidebarCtrl', function($scope, $location, $http){
     $scope.goLog = function () {
         localStorage.clear();
         localStorage.setItem('reg', "random");
+        $location.path("/login");
       };
 
     $scope.goReg = function () {
         localStorage.clear();
+        $location.path("/register");
     };
 
     $scope.getClass = function (path) {
