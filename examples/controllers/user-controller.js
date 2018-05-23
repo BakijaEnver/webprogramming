@@ -1,4 +1,4 @@
-function UserController($scope, $http){
+function UserController($scope, $http, $location){
     console.log("Hello from user controller");
 
     var config = {headers:  {
@@ -28,6 +28,14 @@ function UserController($scope, $http){
         }),function(error){
             console.log(error);
         }
+      }
+
+      $scope.delete_user = function(id){
+        $http.delete('/delete/'+id, config).then(function(response){
+          localStorage.clear();
+        }, function(error){
+          console.log(error);
+        });
       }
 
       init();

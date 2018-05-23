@@ -133,8 +133,8 @@ app.put('/rest/v1/provider/edit', function(request, response){
   })
 });
 
-app.delete('/rest/v1/provider/delete/:id', function(request, response){
-  db.collection('providers').findOneAndDelete({_id: new MongoId(request.params.id)}, (err, result) => {
+app.delete('/delete/:id', function(request, response){
+  db.collection('users').findOneAndDelete({_id: new MongoId(request.params.id)}, (err, result) => {
     if (err) return res.send(500, err)
     response.send('OK');
   })
