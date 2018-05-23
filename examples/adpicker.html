@@ -7,22 +7,22 @@
         </div>
         <div class="sidebar-wrapper">
             <ul class="nav">
-                <li ng-class="getClass('/dashboard')">
-                    <a href="#!dashboard" ng-click="menuItemClicked()">
-                        <i class="material-icons">dashboard</i>
-                        <p>nije Dashboard</p>
+                <li ng-class="getClass('/home')">
+                    <a href="#!home" ng-click="menuItemClicked()">
+                        <i class="material-icons">dvr</i>
+                        <p>Home Page</p>
                     </a>
                 </li>
-                <li ng-class="getClass('/table')">
-                    <a href="#!table" ng-click="menuItemClicked()">
-                        <i class="material-icons">content_paste</i>
-                        <p>Table List</p>
+                <li ng-class="getClass('/searchproviders')">
+                    <a href="#!searchproviders" ng-click="menuItemClicked()">
+                        <i class="material-icons">record_voice_over</i>
+                        <p>Search for Advertiser</p>
                     </a>
                 </li>
-                <li ng-class="getClass('/providers')">
-                    <a href="#!providers" ng-click="menuItemClicked()">
-                        <i class="material-icons">content_paste</i>
-                        <p>Providers</p>
+                <li ng-class="getClass('/searchusers')">
+                    <a href="#!searchusers" ng-click="menuItemClicked()">
+                        <i class="material-icons">contacts</i>
+                        <p>Search for User</p>
                     </a>
                 </li>
                 <li ng-class="getClass('/user')">
@@ -33,7 +33,7 @@
                 </li>
                 <li>
                     <a href="#" ng-click="logout()">
-                        <i class="material-icons">power_settings_new</i>
+                        <i class="material-icons">cancel</i>
                         <p>Logout</p>
                     </a>
                 </li>
@@ -57,7 +57,7 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Logout" ng-click="logout()">
-                                <i class="material-icons">power_settings_new</i>
+                                <i class="material-icons">cancel</i>
                             </a>
                         </li>
                     </ul>
