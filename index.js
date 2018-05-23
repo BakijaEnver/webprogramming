@@ -85,12 +85,24 @@ app.post('/register', function(request, response){
 
 });
 
+
+
 app.get('/user', function(request, response){
   db.collection('users').find({username : usr}).toArray((err, users) => {
     if (err) return console.log(err);
     response.setHeader('Content-Type', 'application/json');
     response.send(users);
     
+  })
+});
+
+app.put('/update', function(request, response){
+  user = request.body;
+  db.collection('users').findOneAndUpdate( {username: user.username }, {
+    $set: {location: user.location, age: user.age, familystatus : user.familystatus, interests : user.interests}
+  }, (err, result) => {
+    if (err) return res.send(err);
+    response.send('OK');
   })
 });
 

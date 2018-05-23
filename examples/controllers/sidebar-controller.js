@@ -31,6 +31,7 @@ app.controller('sidebarCtrl', function($scope, $location, $http){
         }
     }
 
+
     $scope.logout = function(){
         localStorage.clear();
         localStorage.setItem('reg', "random");

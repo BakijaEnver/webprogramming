@@ -10,7 +10,7 @@ function UserController($scope, $http){
 
     var init = function(){
         get_users();
-      
+
       }
 
       var get_users = function (){
@@ -20,6 +20,14 @@ function UserController($scope, $http){
           alert(response.status);
         }
       };
+
+      $scope.update = function(credentials){
+        $http.put('/update', credentials).then(function(response){
+
+        }),function(error){
+            console.log(error);
+        }
+    }
 
       init();
 

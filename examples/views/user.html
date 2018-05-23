@@ -6,30 +6,23 @@
                 <p class="category">Complete your profile</p>
             </div>
             <div class="card-content">
-               <div ng-repeat="user in users">
+               
                 <form name="add_user_form">
+                    <div ng-repeat="user in users">
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group label-floating">
                                 <label class="control-label">Username</label>
-                                <input name="username" ng-value="username" class="form-control" ng-model="username" required>
+                                <input name="username" value="{{user.username}}"  class="form-control" disabled ng-model="credentials.username">
                                 <span ng-show="add_user_form.username.$touched && add_user_form.username.$invalid">The name is required.</span>
                             </div>
                         </div>
                     </div>
-                    
-                    
-                        <div>{{user.username}}</div>
-                        <div>{{user.location}}</div>
-                        <div>{{user.age}}</div>
-                        <div>{{user.familystatus}}</div>
-                        <div>{{user.interests}}</div>
-                    
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group label-floating">
                                 <label class="control-label">Password</label>
-                                <input name="password" class="form-control" ng-model="password" required minlength="4">
+                                <input name="password" class="form-control" value="*********" disabled  required minlength="4" ng-model="credentials.password">
                                 <span style="color:red" ng-show="add_user_form.username.$touched && add_user_form.username.$invalid">
                                   <span ng-show="add_user_form.password.$error.required">Password is required.</span>
                                   <span ng-show="add_user_form.password.$error.minlength">Password has to be at least 4 characters long.</span>
@@ -51,7 +44,7 @@
                         <div class="col-md-12">
                             <div class="form-group label-floating">
                                 <label class="control-label">Location</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" value="{{user.location}}" ng-model="credentials.location">
                             </div>
                         </div>
                     </div>
@@ -59,7 +52,7 @@
                         <div class="col-md-12">
                             <div class="form-group label-floating">
                                 <label class="control-label">Age</label>
-                                <input type="number" class="form-control">
+                                <input type="number" class="form-control" value="{{user.age}}" ng-model="credentials.age">
                             </div>
                         </div>
                     </div>
@@ -67,7 +60,7 @@
                         <div class="col-md-12">
                             <div class="form-group label-floating">
                                 <label class="control-label">Family Status</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" value="{{user.familystatus}}" ng-model="credentials.familystatus">
                             </div>
                         </div>
                     </div>
@@ -75,15 +68,16 @@
                             <div class="col-md-12">
                                 <div class="form-group label-floating">
                                     <label class="control-label">Interests</label>
-                                    <input type="text" class="form-control">
+                                    <input type="text" class="form-control" value="{{user.interests}}" ng-model="credentials.interests">
                                 </div>
                             </div>
                         </div>
                    
-                    <button type="submit" class="btn btn-primary pull-right">Update Profile</button>
+                    <button type="submit" class="btn btn-primary pull-right" onclick="update(credentials)">Update Profile</button>
                     <div class="clearfix"></div>
+                    </div>
                 </form>
-              </div>
+             
             </div>
         </div>
     </div>
