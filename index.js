@@ -14,6 +14,8 @@ var db;
 app.use('/', express.static('examples'));
 app.use(express.json());       // to support JSON-encoded bodies
 app.use(express.urlencoded()); // to support URL-encoded bodies
+app.use(bodyparser.json());
+app.use(bodyparser.urlencoded({ extended: false }));
 
 providers = [
   {'id':1,'name': 'Vodovod','reference_number': 'ASB15215'},

@@ -21,13 +21,14 @@ function UserController($scope, $http){
         }
       };
 
+
       $scope.update = function(credentials){
         $http.put('/update', credentials).then(function(response){
 
         }),function(error){
             console.log(error);
         }
-    }
+      }
 
       init();
 
