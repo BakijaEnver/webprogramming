@@ -99,7 +99,7 @@ app.get('/user', function(request, response){
 });
 
 app.get('/users/:family/:interests/:location/:age', function(request, response){
-  db.collection('users').find( { $or: [ {familystatus : request.params.family }, {location : request.params.location} , {interests : request.params.interests} , {age : {$eq : parseInt( request.params.age)}} ]} ).toArray((err, users) => {
+  db.collection('users').find( { $and: [ {type : "regular"} , { $or: [ {familystatus : request.params.family }, {location : request.params.location} , {interests : request.params.interests} , {age : {$eq : parseInt( request.params.age)}} ] } ]  } ).toArray((err, users) => {
     if (err) return console.log(err);
     response.setHeader('Content-Type', 'application/json');
     response.send(users);
