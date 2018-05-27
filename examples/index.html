@@ -77,9 +77,12 @@
         .when("/searchproviders", {
             templateUrl : "views/searchproviders.html",
             controller : "tableController"
-        }).when("/searchusers", {
-            templateUrl : "views/searchusers.html"
-        }).when("/login", {
+        })
+        .when("/searchusers", {
+            templateUrl : "views/searchusers.html",
+            controller: "userController"
+        })
+        .when("/login", {
             templateUrl : "views/login.html",
             controller: "userController"
         });

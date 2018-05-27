@@ -38,6 +38,22 @@ function UserController($scope, $http, $location){
         });
       }
 
+      $scope.find_user = function(search){
+        var family="";
+        var interests="";
+        var location="";
+        var age="";
+        family=search.family;
+        interests=search.interests;
+        location=search.location;
+        age=search.age;
+        $http.get('/users/'+family+'/'+interests+'/'+location+'/'+age).then(function(response){
+           $scope.userssearch = response.data;
+        }, function(error){
+          console.log(error);
+        });
+      }
+
       init();
 
 

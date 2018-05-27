@@ -12,27 +12,30 @@
                 <div class="row">
                     <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                         <div class="card card-stats">
+                            
                             <div class="card-content">
+                                <i class="material-icons">favorite_border</i>
                                 <h3 class="title">Family Status</h3>
                             </div>
                             <div class="card-footer">
-                                    <input type="radio" ng-model="search.family" name="family" value="single">Single</button>
+                                    <input type="radio" ng-model="search.family"  value="single">Single</button>
                                 
                             </div>
                             <div class="card-footer">
-                                    <input type="radio" ng-model="search.family" name="family" value="married">Married</button>
+                                    <input type="radio" ng-model="search.family"  value="married">Married</button>
                             </div>
                             <div class="card-footer">
-                                <input type="radio" ng-model="search.family" name="family" value="complicated">Complicated</button>
+                                <input type="radio" ng-model="search.family"  value="complicated">Complicated</button>
                             </div>
                             <div class="card-footer">
-                                    <input type="radio" ng-model="search.family" name="family" value="notdefined">Not Defined</button>
+                                    <input type="radio" ng-model="search.family"  value="notdefined">Not Defined</button>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                         <div class="card card-stats">
                             <div class="card-content">
+                                    <i class="material-icons">pageview</i>
                                 <h3 class="title">Interests</h3>
                             </div>
                             <div class="card-footer">
@@ -44,6 +47,7 @@
                     <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                         <div class="card card-stats">
                             <div class="card-content">
+                                    <i class="material-icons">location_city</i>
                                 <h3 class="title">Location</h3>
                             </div>
                             <div class="card-footer">
@@ -55,6 +59,7 @@
                     <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                         <div class="card card-stats">
                             <div class="card-content">
+                                    <i class="material-icons">access_time</i>
                                 <h3 class="title">Age</h3>
                             </div>
                             <div class="card-footer">
@@ -63,7 +68,7 @@
                                     <datalist  id="tickmarks">
                                       <option value="0" label="0">
                                       <option value="10">
-                                      <option value="20">
+                                      <option value="22">
                                       <option value="30">
                                       <option value="40">
                                       <option value="50" label="50">
@@ -87,122 +92,83 @@
     </div>
 </div>
 
+<div ng-repeat="user in userssearch">
+
 
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="card card-stats">
-            <div class="card-header" data-background-color="orange">
-                <i class="material-icons">home</i>
-            </div>
+                <div class="card-header" data-background-color="green">
+                        <i class="material-icons">account_box</i>
+                    </div>
             <div class="card-content card-content-left">
-                <p class="category">Džemala Bijedića 86, 71000 Sarajevo</p>
-                <h3 class="title">Stan Čengić Vila</h3>
+                <p class="category">Username</p>
+                <h3 class="title">{{user.username}}</h3>
             </div>
             <div>
                 <div class="row">
                     <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                         <div class="card card-stats">
-                            <div class="card-header" data-background-color="green">
-                                <img src="assets/img/epbih.png">
-                            </div>
-                            <div class="card-content">
-                                <p class="category">Struja</p>
-                                <h3 class="title">-34.25 KM</h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons">date_range</i> Podaci od 12.03.2018 12:21:45
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
-                        <div class="card card-stats">
                             <div class="card-header" data-background-color="red">
-                                <img src="assets/img/viksa.png">
+                                    <i class="material-icons">favorite_border</i>
                             </div>
-                            <div class="card-content">
-                                <p class="category">Voda</p>
-                                <h3 class="title">-14.23 BAM</h3>
+                            <div class="card-content card-content-left">
+                                <p class="category">Family Status</p>
+                                <h3 class="title">{{user.familystatus}}</h3>
                             </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons">date_range</i> Podaci od 12.03.2018 12:21:45
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
 
                     <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
-                        <div class="card card-stats">
-                            <div class="card-header" data-background-color="blue">
-                                <img src="assets/img/toplane-sa.png">
-                            </div>
-                            <div class="card-content">
-                                <p class="category">Grijanje</p>
-                                <h3 class="title">0.34 KM</h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons">date_range</i> Podaci od 12.03.2018 12:21:45
+                            <div class="card card-stats">
+                                    <div class="card-header" data-background-color="blue">
+                                            <i class="material-icons">location_city</i>
+                                    </div>
+                                <div class="card-content card-content-left">
+                                    <p class="category">Location &emsp; &emsp;</p>
+                                    <h3 class="title">{{user.location}}</h3>
                                 </div>
+                                
                             </div>
-                        </div>
-                    </div>
+                        </div>  
 
                     <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
                         <div class="card card-stats">
-                            <div class="card-header" data-background-color="orange">
-                                <img src="assets/img/kjkp-rad.png">
-                            </div>
-                            <div class="card-content">
-                                <p class="category">Smeće</p>
-                                <h3 class="title">-6.34 KM</h3>
-                            </div>
-                            <div class="card-footer">
-                                <div class="stats">
-                                    <i class="material-icons">date_range</i> Podaci od 12.03.2018 12:21:45
+                                <div class="card-header" data-background-color="purple">
+                                        <i class="material-icons">pageview</i>
                                 </div>
+                            <div class="card-content card-content-left">
+                                <p class="category">Interests &emsp; &emsp;</p>
+                                <h3 class="title">{{user.interests}}</h3>
                             </div>
+                            
                         </div>
                     </div>
+
+
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                            <div class="card card-stats">
+                                    <div class="card-header" data-background-color="yellow">
+                                            <i class="material-icons">access_time</i>
+                                    </div>
+                                <div class="card-content card-content-left">
+                                    <p class="category">Age &emsp; &emsp;&emsp; &emsp;</p>
+                                    <h3 class="title">{{user.age}}</h3>
+                                </div>
+                                
+                            </div>
+                    </div>
+
+
                 </div>
+
+                <button type="submit" class="btn btn-primary pull-right" ng-click="find_user(search)" style="background-color: blue; margin-right: 10px">Connect</button>
+                  
 
             </div>
         </div>
     </div>
 </div>
 
-<div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <div class="card card-stats">
-                <div class="card-header" data-background-color="red">
-                    <i class="material-icons">home</i>
-                </div>
-                <div class="card-content card-content-left">
-                    <p class="category">Han Ivica bb, Kiseljak</p>
-                    <h3 class="title">Vikendica Lepenica</h3>
-                </div>
-                <div>
-                    <div class="row">
-                        <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
-                            <div class="card card-stats">
-                                <div class="card-header" data-background-color="green">
-                                    <img src="assets/img/epbih.png">
-                                </div>
-                                <div class="card-content">
-                                    <p class="category">Struja</p>
-                                    <h3 class="title">-34.25 KM</h3>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="stats">
-                                        <i class="material-icons">date_range</i> Podaci od 12.03.2018 12:21:45
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+</div>
