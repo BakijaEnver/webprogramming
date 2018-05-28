@@ -1,4 +1,4 @@
-<div class="row">
+<!--<div class="row">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header" data-background-color="purple">
@@ -118,4 +118,181 @@
             </div>
         </div>
     </div>
+</div>-->
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card card-stats">
+            <div class="card-header" data-background-color="orange">
+                <i class="material-icons">account_box</i>
+            </div>
+            <div class="card-content card-content-left">
+                <p class="category">Find your ideal advertiser!</p>
+                <h3 class="title">Search for Advertisers</h3>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card card-stats">
+                            
+                            <div class="card-content">
+                                <i class="material-icons">favorite_border</i>
+                                <h3 class="title">Family Status</h3>
+                            </div>
+                            <div class="card-footer">
+                                    <input type="radio" ng-model="search.family"  value="single">Single</button>
+                                
+                            </div>
+                            <div class="card-footer">
+                                    <input type="radio" ng-model="search.family"  value="married">Married</button>
+                            </div>
+                            <div class="card-footer">
+                                <input type="radio" ng-model="search.family"  value="complicated">Complicated</button>
+                            </div>
+                            <div class="card-footer">
+                                    <input type="radio" ng-model="search.family"  value="notdefined">Not Defined</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card card-stats">
+                            <div class="card-content">
+                                    <i class="material-icons">pageview</i>
+                                <h3 class="title">Interests</h3>
+                            </div>
+                            <div class="card-footer">
+                                    <input type="text" ng-model="search.interests" name="interests" style="border: none; border-bottom: 0.5px solid;" ></button>
+                             </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card card-stats">
+                            <div class="card-content">
+                                    <i class="material-icons">location_city</i>
+                                <h3 class="title">Location</h3>
+                            </div>
+                            <div class="card-footer">
+                                    <input type="text" ng-model="search.location" name="location" style="border: none; border-bottom: 0.5px solid;" ></button>
+                             </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card card-stats">
+                            <div class="card-content">
+                                    <i class="material-icons">access_time</i>
+                                <h3 class="title">Age</h3>
+                            </div>
+                            <div class="card-footer">
+                                    <input type="range" ng-model="search.age" name="age"  list="tickmarks">
+
+                                    <datalist  id="tickmarks">
+                                      <option value="0" label="0">
+                                      <option value="10">
+                                      <option value="22">
+                                      <option value="30">
+                                      <option value="40">
+                                      <option value="50" label="50">
+                                      <option value="60">
+                                      <option value="70">
+                                      <option value="80">
+                                      <option value="90">
+                                      <option value="100" label="100">
+                                    </datalist>
+                             </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <button type="submit" class="btn btn-primary pull-right" ng-click="find_user(search)" style="background-color: blue; margin-right: 10px">Search</button>
+                    
+
+            </div>
+        </div>
+    </div>
 </div>
+
+<div ng-repeat="user in userssearch">
+
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card card-stats">
+                <div class="card-header" data-background-color="green">
+                        <i class="material-icons">account_box</i>
+                    </div>
+            <div class="card-content card-content-left">
+                <p class="category">Username</p>
+                <h3 class="title">{{user.username}}</h3>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="red">
+                                    <i class="material-icons">favorite_border</i>
+                            </div>
+                            <div class="card-content card-content-left">
+                                <p class="category">Family Status</p>
+                                <h3 class="title">{{user.familystatus}}</h3>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                            <div class="card card-stats">
+                                    <div class="card-header" data-background-color="blue">
+                                            <i class="material-icons">location_city</i>
+                                    </div>
+                                <div class="card-content card-content-left">
+                                    <p class="category">Location &emsp; &emsp;</p>
+                                    <h3 class="title">{{user.location}}</h3>
+                                </div>
+                                
+                            </div>
+                        </div>  
+
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                        <div class="card card-stats">
+                                <div class="card-header" data-background-color="purple">
+                                        <i class="material-icons">pageview</i>
+                                </div>
+                            <div class="card-content card-content-left">
+                                <p class="category">Interests &emsp; &emsp;</p>
+                                <h3 class="title">{{user.interests}}</h3>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                            <div class="card card-stats">
+                                    <div class="card-header" data-background-color="yellow">
+                                            <i class="material-icons">access_time</i>
+                                    </div>
+                                <div class="card-content card-content-left">
+                                    <p class="category">Age &emsp; &emsp;&emsp; &emsp;</p>
+                                    <h3 class="title">{{user.age}}</h3>
+                                </div>
+                                
+                            </div>
+                    </div>
+
+
+                </div>
+
+                <button type="submit" class="btn btn-primary pull-right" ng-click="find_user(search)" style="background-color: blue; margin-right: 10px">Connect</button>
+                  
+
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
