@@ -54,6 +54,22 @@ function UserController($scope, $http, $location){
         });
       }
 
+      $scope.find_provider = function(search){
+        var family="";
+        var interests="";
+        var location="";
+        var age="";
+        family=search.family;
+        interests=search.interests;
+        location=search.location;
+        age=search.age;
+        $http.get('/providers/'+family+'/'+interests+'/'+location+'/'+age).then(function(response){
+           $scope.providerssearch = response.data;
+        }, function(error){
+          console.log(error);
+        });
+      }
+
       init();
 
 

@@ -70,12 +70,20 @@ app.post('/login', function(request, response){
 
 app.post('/register', function(request, response){
   var user = request.body;
-  
+  if(user.type == "regular"){
+
   db.collection("users").save( { "username" : user.username, "password" : md5(user.password) , "location" : user.location, "age" : user.age, "interests" : user.interests , "type" : user.type, "familystatus" : user.family} , function(error) {
     if (error){
       throw error;
     }
   });  
+  }else{
+    db.collection("providers").save( { "username" : user.username, "password" : md5(user.password) , "location" : user.location, "age" : user.age, "interests" : user.interests , "type" : user.type, "familystatus" : user.family} , function(error) {
+      if (error){
+        throw error;
+      }
+    }); 
+  }
   var token = jwt.sign(user, jwt_secret, {
     expiresIn: 20000 
   });
@@ -103,6 +111,15 @@ app.get('/users/:family/:interests/:location/:age', function(request, response){
     if (err) return console.log(err);
     response.setHeader('Content-Type', 'application/json');
     response.send(users);
+    
+  })
+});
+
+app.get('/providers/:family/:interests/:location/:age', function(request, response){
+  db.collection('providers').find( { $and: [ {type : "advertiser"} , { $or: [ {familystatus : request.params.family }, {location : request.params.location} , {interests : request.params.interests} , {age : {$eq : parseInt( request.params.age)}} ] } ]  } ).toArray((err, providers) => {
+    if (err) return console.log(err);
+    response.setHeader('Content-Type', 'application/json');
+    response.send(providers);
     
   })
 });
