@@ -113,7 +113,7 @@ app.get('/users/:family/:interests/:location/:age', function(request, response){
     response.send(users);
     
   })
-});
+}); 
 
 app.get('/providers/:family/:interests/:location/:age', function(request, response){
   db.collection('providers').find( { $and: [ {type : "advertiser"} , { $or: [ {familystatus : request.params.family }, {location : request.params.location} , {interests : request.params.interests} , {age : {$eq : parseInt( request.params.age)}} ] } ]  } ).toArray((err, providers) => {

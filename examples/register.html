@@ -11,12 +11,12 @@
                             <p class="category">Create your account</p>
                         </div>
                         <div class="card-content">
-                            <form>
+                            <form name="regForm">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Username</label>
-                                            <input type="text" ng-model="credentials.username" class="form-control">
+                                            <input type="text" name="username" ng-model="credentials.username" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>
@@ -24,7 +24,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Password</label>
-                                            <input type="password" ng-model="credentials.password" class="form-control">
+                                            <input type="password" ng-model="credentials.password" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>
@@ -32,15 +32,15 @@
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Location</label>
-                                            <input type="text" ng-model="credentials.location" class="form-control">
+                                            <input type="text" ng-model="credentials.location" class="form-control" required>
                                         </div>
-                                    </div>
+                                    </div>  
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Age</label>
-                                            <input type="number" ng-model="credentials.age" class="form-control">
+                                            <input type="number" ng-model="credentials.age" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>
@@ -48,7 +48,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group label-floating">
                                             <label class="control-label">Interests</label>
-                                            <input type="text" ng-model="credentials.interests" class="form-control">
+                                            <input type="text" ng-model="credentials.interests" class="form-control" required>
                                         </div>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                                                 <div class="form-group label-floating">
                                                     <div class="col-md-6"> <label class="control-label">Family Status: </label></div>
                                                         <div class="col-md-4" style="position: relative;top: -22px;"> 
-                                                            <select name="status" class="control-label" ng-model="credentials.family">
+                                                            <select name="status" class="control-label" ng-model="credentials.family" required>
                                                                 <option value="married">Married</option>
                                                                 <option value="single">Single</option>
                                                                 <option value="complicated">Complicated</option>
@@ -82,13 +82,15 @@
                                                 </div>
                                         </div>
                                 </div>
-                                <button type="button" class="btn btn-primary pull-left" data-background-color="black" ng-click="goLog()">Login</button>
-                                <button type="submit" class="btn btn-primary pull-right" data-background-color="black" ng-click="register(credentials)">Register</button>
+
+                                <button type="submit" class="btn btn-primary pull-left" data-background-color="black" ng-click="register(credentials)">Register</button>
+                                <button type="button" class="btn btn-primary pull-right" data-background-color="black" ng-click="goLog()">Login</button>
                                 <div class="clearfix"></div>
                             </form>
+
                         </div>
                     </div>
-                </div>
+                     </div>
                 <div class="col-md-4 col-xs-0">
                 </div>
             </div>

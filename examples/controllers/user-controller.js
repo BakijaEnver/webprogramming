@@ -1,4 +1,4 @@
-function UserController($scope, $http, $location){
+function UserController($scope, $http, $location, $mdDialog){
     console.log("Hello from user controller");
 
     var config = {headers:  {
@@ -69,6 +69,26 @@ function UserController($scope, $http, $location){
           console.log(error);
         });
       }
+
+
+      $scope.showPrompt = function(ev, user) {
+        // Appending dialog to document.body to cover sidenav in docs app
+        var confirm = $mdDialog.prompt()
+          .title('Senda a message to ' + user.username)
+          .textContent('Explain what ad you need ' + user.username + ' for.')
+          .placeholder('explanation')
+          .ariaLabel('explanation')
+          .initialValue('Hello ' + user.username +'!')
+          .targetEvent(ev)
+          .required(true)
+          .ok('Okay!')
+          .cancel('Choose another user');
+    
+        $mdDialog.show(confirm).then(function(result) {
+          $scope.status = result;
+        });
+      };
+    
 
       init();
 
