@@ -23,6 +23,7 @@
 </head>
 
 <body> 
+
     <div ng-if="!check_reg()">
         <div ng-include="'register.html'"></div>
     </div>
@@ -53,6 +54,7 @@
 <script>
     var app = angular.module("adpicker-app", ["ngRoute", "xeditable", "ui.bootstrap","ngMaterial"]);
 
+   
     app.controller('dashboardController', DashboardController);
     app.controller('userController', UserController);
     app.controller('tableController', TableController);

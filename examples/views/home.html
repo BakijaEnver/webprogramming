@@ -1,63 +1,66 @@
+
+<h3>Your account information:</h3>
+
+<div ng-repeat="infos in info">
+
 <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
             <div class="card-header" data-background-color="orange">
-                <i class="material-icons">content_copy</i>
+                <i class="material-icons">attach_money</i>
             </div>
             <div class="card-content">
-                <p class="category">not Used Space</p>
-                <h3 class="title">49/50
-                    <small>GB</small>
+                <p class="category" >Money Earned</p>
+                <h3 class="title">${{infos.moneyearned}}
                 </h3>
             </div>
             <div class="card-footer">
-                <div class="stats">
-                    <i class="material-icons text-danger">warning</i>
-                    <a href="#pablo">Get More Space...</a>
+                    <div class="stats">
+                        <i class="material-icons">update</i> Just Updated
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
             <div class="card-header" data-background-color="green">
-                <i class="material-icons">store</i>
+                <i class="material-icons">assessment</i>
             </div>
             <div class="card-content">
-                <p class="category">Revenue</p>
-                <h3 class="title">$34,245</h3>
+                <p class="category">Ads Posted Today</p>
+                <h3 class="title">{{infos.adsposted}}</h3>
             </div>
             <div class="card-footer">
-                <div class="stats">
-                    <i class="material-icons">date_range</i> Last 24 Hours
+                    <div class="stats">
+                        <i class="material-icons">update</i> Just Updated
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
             <div class="card-header" data-background-color="red">
-                <i class="material-icons">info_outline</i>
+                <i class="material-icons">account_circle</i>
             </div>
             <div class="card-content">
-                <p class="category">Fixed Issues</p>
-                <h3 class="title">75</h3>
+                <p class="category">People Reached</p>
+                <h3 class="title">{{infos.peoplereached}}</h3>
             </div>
             <div class="card-footer">
-                <div class="stats">
-                    <i class="material-icons">local_offer</i> Tracked from Github
+                    <div class="stats">
+                        <i class="material-icons">update</i> Just Updated
+                    </div>
                 </div>
-            </div>
         </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6">
         <div class="card card-stats">
-            <div class="card-header" data-background-color="blue">
-                <i class="fa fa-twitter"></i>
+            <div class="card-header" data-background-color="black">
+                    <i class="material-icons">hourglass_empty</i> 
             </div>
             <div class="card-content">
-                <p class="category">Followers</p>
-                <h3 class="title">+245</h3>
+                <p class="category">Pending Posts</p>
+                <h3 class="title">{{infos.pendingposts}}</h3>
             </div>
             <div class="card-footer">
                 <div class="stats">
@@ -67,235 +70,151 @@
         </div>
     </div>
 </div>
+
+
+<div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header" data-background-color="blue">
+                        <i class="fa fa-facebook"></i>
+                </div>
+                <div class="card-content">
+                    <p class="category" >Facebook Ads</p>
+                    <h3 class="title">{{infos.facebook}}
+                    </h3>
+                </div>
+                <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">update</i> Just Updated
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header" data-background-color="purple">
+                       <i class="fa fa-instagram"></i>
+                </div>
+                <div class="card-content">
+                    <p class="category">Instagram Ads</p>
+                    <h3 class="title">{{infos.instagram}}</h3>
+                </div>
+                <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">update</i> Just Updated
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="card card-stats">
+                <div class="card-header" data-background-color="blue">
+                        <i class="fa fa-twitter"></i>
+                </div>
+                <div class="card-content">
+                    <p class="category">Twitter Ads</p>
+                    <h3 class="title">{{infos.twitter}}</h3>
+                </div>
+                <div class="card-footer">
+                        <div class="stats">
+                            <i class="material-icons">update</i> Just Updated
+                        </div>
+                    </div>
+            </div>
+        </div>
+   
+    </div>
+
+
+</div>
+
+<h3>News on social networks:</h3>
+
 <div class="row">
     <div class="col-md-4">
         <div class="card">
-            <div class="card-header card-chart" data-background-color="green">
+            <div class="card-header card-chart" data-background-color="white">
                 <div class="ct-chart" id="dailySalesChart"></div>
+                <img src="/assets/img/fb.jpeg">
             </div>
             <div class="card-content">
                 <h4 class="title">Daily Sales</h4>
                 <p class="category">
                     <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
             </div>
-            <div class="card-footer">
-                <div class="stats">
-                    <i class="material-icons">access_time</i> updated 4 minutes ago
-                </div>
-            </div>
+            
         </div>
     </div>
     <div class="col-md-4">
         <div class="card">
-            <div class="card-header card-chart" data-background-color="orange">
+            <div class="card-header card-chart" data-background-color="white">
                 <div class="ct-chart" id="emailsSubscriptionChart"></div>
+                <img src="/assets/img/ig.jpg">
             </div>
             <div class="card-content">
                 <h4 class="title">Email Subscriptions</h4>
                 <p class="category">Last Campaign Performance</p>
             </div>
-            <div class="card-footer">
-                <div class="stats">
-                    <i class="material-icons">access_time</i> campaign sent 2 days ago
-                </div>
-            </div>
+            
         </div>
     </div>
     <div class="col-md-4">
         <div class="card">
-            <div class="card-header card-chart" data-background-color="red">
+            <div class="card-header card-chart" data-background-color="white">
                 <div class="ct-chart" id="completedTasksChart"></div>
+                <img src="/assets/img/tw.jpg">
             </div>
             <div class="card-content">
                 <h4 class="title">Completed Tasks</h4>
                 <p class="category">Last Campaign Performance</p>
             </div>
-            <div class="card-footer">
-                <div class="stats">
-                    <i class="material-icons">access_time</i> campaign sent 2 days ago
-                </div>
-            </div>
+            
         </div>
     </div>
 </div>
 <div class="row">
-    <div class="col-sm-12">
-        <div class="card card-nav-tabs">
-            <div class="card-header" data-background-color="purple">
-                <div class="nav-tabs-navigation">
-                    <div class="nav-tabs-wrapper">
-                        <span class="nav-tabs-title">Tasks:</span>
-                        <ul class="nav nav-tabs" data-tabs="tabs">
-                            <li class="active">
-                                <a href="#profile" data-toggle="tab">
-                                    <i class="material-icons">bug_report</i> Bugs
-                                    <div class="ripple-container"></div>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="#messages" data-toggle="tab">
-                                    <i class="material-icons">code</i> Website
-                                    <div class="ripple-container"></div>
-                                </a>
-                            </li>
-                            <li class="">
-                                <a href="#settings" data-toggle="tab">
-                                    <i class="material-icons">cloud</i> Server
-                                    <div class="ripple-container"></div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header card-chart" data-background-color="white">
+                    <div class="ct-chart" id="dailySalesChart"></div>
+                    <img src="/assets/img/fb1.jpg">
                 </div>
-            </div>
-            <div class="card-content">
-                <div class="tab-content">
-                    <div class="tab-pane active" id="profile">
-                        <table class="table">
-                          <thead>
-                            <tr>
-                              <th>Provider name</th>
-                              <th>Reference number</th>
-                              <th>Actions</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <form>
-                                <td>
-                                  <input ng-model="provider.name" type="text" class="form-control" placeholder="">
-                                </td>
-                                <td>
-                                  <input ng-model="provider.reference_number" type="text" class="form-control" placeholder="">
-                                </td>
-                                <td class="td-actions text-right">
-                                  <button ng-click="add_provider()" type="submit" rel="tooltip" title="Add" class="btn btn-success btn-simple btn-lg">
-                                      <i class="material-icons">add</i>
-                                  </button>
-                                </td>
-                              </form>
-                              </tr>
-                            <tr ng-repeat="provider in providers">
-                              <td><a href="#" editable-text="provider.name" onbeforesave="edit_provider(provider,provider)">{{provider.name}}</a></td>
-                              <td><a href="#" editable-text="provider.reference_number" onbeforesave="edit_provider(provider)">{{provider.reference_number}}</a></td>
-                              <td class="td-actions text-right">
-                                <button ng-click="delete_provider(provider._id)" type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-lg">
-                                    <i class="material-icons">close</i>
-                                </button>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                    </div>
-                    <div class="tab-pane" id="messages">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" name="optionsCheckboxes" checked>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                    </td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                            <i class="material-icons">edit</i>
-                                        </button>
-                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                            <i class="material-icons">close</i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" name="optionsCheckboxes">
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                            <i class="material-icons">edit</i>
-                                        </button>
-                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                            <i class="material-icons">close</i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="tab-pane" id="settings">
-                        <table class="table">
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" name="optionsCheckboxes">
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>Lines From Great Russian Literature? Or E-mails From My Boss?</td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                            <i class="material-icons">edit</i>
-                                        </button>
-                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                            <i class="material-icons">close</i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" name="optionsCheckboxes" checked>
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>Flooded: One year later, assessing what was lost and what was found when a ravaging rain swept through metro Detroit
-                                    </td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                            <i class="material-icons">edit</i>
-                                        </button>
-                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                            <i class="material-icons">close</i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" name="optionsCheckboxes">
-                                            </label>
-                                        </div>
-                                    </td>
-                                    <td>Sign contract for "What are conference organizers afraid of?"</td>
-                                    <td class="td-actions text-right">
-                                        <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-simple btn-xs">
-                                            <i class="material-icons">edit</i>
-                                        </button>
-                                        <button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-simple btn-xs">
-                                            <i class="material-icons">close</i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <div class="card-content">
+                    <h4 class="title">Daily Sales</h4>
+                    <p class="category">
+                        <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
                 </div>
+                
             </div>
         </div>
-    </div>   
-</div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header card-chart" data-background-color="white">
+                    <div class="ct-chart" id="emailsSubscriptionChart"></div>
+                    <img src="/assets/img/ig1.jpg">
+                </div>
+                <div class="card-content">
+                    <h4 class="title">Email Subscriptions</h4>
+                    <p class="category">Last Campaign Performance</p>
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-header card-chart" data-background-color="white">
+                    <div class="ct-chart" id="completedTasksChart"></div>
+                    <img src="/assets/img/tw1.jpg">
+                </div>
+                <div class="card-content">
+                    <h4 class="title">Completed Tasks</h4>
+                    <p class="category">Last Campaign Performance</p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
 <div class="row">
     <div class="col-sm-12">
         <div class="card">

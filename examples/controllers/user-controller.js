@@ -1,4 +1,4 @@
-function UserController($scope, $http, $location, $mdDialog){
+function UserController($scope, $http, $location, $mdDialog, $mdToast){
     console.log("Hello from user controller");
 
     var config = {headers:  {
@@ -85,10 +85,39 @@ function UserController($scope, $http, $location, $mdDialog){
           .cancel('Choose another user');
     
         $mdDialog.show(confirm).then(function(result) {
-          $scope.status = result;
+          $http.post('/connect_user', { 'user' : user.username , 'message' : result} ).then(function(response){
+            
+         }),function(error){
+             console.log(error);
+         }
         });
+
       };
     
+
+      $scope.showPromptProvider = function(ev, provider) {
+        // Appending dialog to document.body to cover sidenav in docs app
+        var confirm = $mdDialog.prompt()
+          .title('Senda a message to ' + provider.username)
+          .textContent('Explain what ad you need ' + provider.username + ' for.')
+          .placeholder('explanation')
+          .ariaLabel('explanation')
+          .initialValue('Hello ' + provider.username +'!')
+          .targetEvent(ev)
+          .required(true)
+          .ok('Okay!')
+          .cancel('Choose another provider');
+    
+        $mdDialog.show(confirm).then(function(result) {
+          $http.post('/connect_provider', { 'advertiser' : provider.username , 'message' : result} ).then(function(response){
+            
+         }),function(error){
+             console.log(error);
+         }
+        });
+
+      };
+
 
       init();
 

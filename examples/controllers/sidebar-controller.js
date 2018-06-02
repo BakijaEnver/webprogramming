@@ -1,5 +1,6 @@
 app.controller('sidebarCtrl', function($scope, $location, $http){
 
+
     $scope.check_login = function(){
         if(localStorage.getItem('user')){
             return true;

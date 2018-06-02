@@ -47,12 +47,13 @@ var usr = "";
 app.post('/login', function(request, response){
   var user = request.body;
 
-  db.collection("users").findOne({'username': user.username, 'password': md5(user.password)}, function(error, user) {
+
+  db.collection("users").findOne({'username': user.username, 'password': md5(user.password)}, function(error, uuser) {
     if (error){
       throw error;
     }else{
-      if(user){
-        var token = jwt.sign(user, jwt_secret, {
+      if(uuser){
+        var token = jwt.sign(uuser, jwt_secret, {
           expiresIn: 20000 
         });
         usr = user.username;
@@ -61,29 +62,25 @@ app.post('/login', function(request, response){
           message: 'Authenticated',
           token: token
         })
-      }else{
-        response.status(401).send('Credentials are wrong.');
       }
-    }
-  });
+            else{
+              response.status(401).send('Credentials are wrong.');
+            }
+          }
+        });
+    
+
 });
 
 app.post('/register', function(request, response){
   var user = request.body;
-  if(user.type == "regular"){
 
-  db.collection("users").save( { "username" : user.username, "password" : md5(user.password) , "location" : user.location, "age" : user.age, "interests" : user.interests , "type" : user.type, "familystatus" : user.family} , function(error) {
+  db.collection("users").save( { "username" : user.username, "password" : md5(user.password) , "location" : user.location, "age" : user.age, "interests" : user.interests , "type" : user.type, "familystatus" : user.family, "moneyearned" : 22131 , "facebook" : 21331, "instagram" : 13131,  "twitter" : 3213,  "adsposted" : 67, "peoplereached" : 51252, "pendingposts" : 13} , function(error) {
     if (error){
       throw error;
     }
   });  
-  }else{
-    db.collection("providers").save( { "username" : user.username, "password" : md5(user.password) , "location" : user.location, "age" : user.age, "interests" : user.interests , "type" : user.type, "familystatus" : user.family} , function(error) {
-      if (error){
-        throw error;
-      }
-    }); 
-  }
+  
   var token = jwt.sign(user, jwt_secret, {
     expiresIn: 20000 
   });
@@ -95,16 +92,48 @@ app.post('/register', function(request, response){
 
 });
 
+app.post('/connect_user', function(request, response){
+   var message = request.body;
+
+    db.collection("connections").save( { "advertiser" : usr , "user" : message.user , "message" : message.message} , function(error) {
+      if (error){
+        throw error;
+      }
+    }); 
+  
+});
+
+app.post('/connect_provider', function(request, response){
+  var message = request.body;
+
+   db.collection("connections").save( { "advertiser" : message.advertiser , "user" : usr , "message" : message.message} , function(error) {
+     if (error){
+       throw error;
+     }
+   }); 
+ 
+});
+
 
 
 app.get('/user', function(request, response){
   db.collection('users').find({username : usr}).toArray((err, users) => {
     if (err) return console.log(err);
+    // localStorage.setItem('uname', users.username);
     response.setHeader('Content-Type', 'application/json');
     response.send(users);
-    
   })
 });
+
+
+app.get('/data', function(request, response){
+  db.collection('users').find({username : usr}).toArray((err, info) => {
+    if (err) return console.log(err);
+    response.setHeader('Content-Type', 'application/json');
+    response.send(info);
+  })
+});
+
 
 app.get('/users/:family/:interests/:location/:age', function(request, response){
   db.collection('users').find( { $and: [ {type : "regular"} , { $or: [ {familystatus : request.params.family }, {location : request.params.location} , {interests : request.params.interests} , {age : {$eq : parseInt( request.params.age)}} ] } ]  } ).toArray((err, users) => {
@@ -116,7 +145,7 @@ app.get('/users/:family/:interests/:location/:age', function(request, response){
 }); 
 
 app.get('/providers/:family/:interests/:location/:age', function(request, response){
-  db.collection('providers').find( { $and: [ {type : "advertiser"} , { $or: [ {familystatus : request.params.family }, {location : request.params.location} , {interests : request.params.interests} , {age : {$eq : parseInt( request.params.age)}} ] } ]  } ).toArray((err, providers) => {
+  db.collection('users').find( { $and: [ {type : "advertiser"} , { $or: [ {familystatus : request.params.family }, {location : request.params.location} , {interests : request.params.interests} , {age : {$eq : parseInt( request.params.age)}} ] } ]  } ).toArray((err, providers) => {
     if (err) return console.log(err);
     response.setHeader('Content-Type', 'application/json');
     response.send(providers);
@@ -134,30 +163,7 @@ app.put('/update', function(request, response){
   })
 });
 
-app.get('/rest/v1/bills', function(request, response){
-  db.collection('bills').find().toArray((err, bills) => {
-    if (err) return console.log(err);
-    response.setHeader('Content-Type', 'application/json');
-    response.send(bills);
-  })
-});
 
-app.post('/rest/v1/provider', function(request, response){
-  db.collection('providers').save(request.body, (err, result) => {
-    if (err) return console.log(err);
-    response.send('OK');
-  })
-});
-
-app.put('/rest/v1/provider/edit', function(request, response){
-  provider = request.body;
-  db.collection('providers').findOneAndUpdate( {_id: new MongoId(provider._id) }, {
-    $set: {name: provider.name, reference_number: provider.reference_number}
-  }, (err, result) => {
-    if (err) return res.send(err);
-    response.send('OK');
-  })
-});
 
 app.delete('/delete/:id', function(request, response){
   db.collection('users').findOneAndDelete({_id: new MongoId(request.params.id)}, (err, result) => {
@@ -166,37 +172,7 @@ app.delete('/delete/:id', function(request, response){
   })
 });
 
-app.get('/rest/v1/providers', function(request, response){
-  db.collection('providers').find().toArray((err, providers) => {
-    if (err) return console.log(err);
-    response.setHeader('Content-Type', 'application/json');
-    response.send(providers);
-  })
-});
 
-app.post('/rest/v1/bill', function(request, response){
-  db.collection('bills').save({'bill_number':request.body.bill_number,
-                               'provider_id':request.body.provider_id,
-                               'amount': request.body.amount,
-                               'date': new Date(request.body.date)}, (err, result) => {
-    if (err) return console.log(err);
-    response.send('OK');
-  })
-});
-
-app.get('/rest/v1/report', function(request, response){
-  db.collection('bills').aggregate(
-    [ 
-      { '$match': { "date": { '$exists': true } } },
-      { '$group': { "_id": { "year": { '$year': "$date"}, "month": {'$month': "$date"} }, "total": { '$sum' : "$amount"} } },
-      { '$sort' : { "_id.year" : -1, "_id.month" : -1 } }
-    ],
-  function(err, documents) {
-      if (err) return console.log(err);
-      response.send(documents);
-    }
-  );
-});
 
 MongoClient.connect('mongodb://localhost:27017/webprogramming', (err, database) => {
   if (err) return console.log(err)
