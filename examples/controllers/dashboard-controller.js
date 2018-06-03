@@ -12,6 +12,7 @@ function DashboardController($scope, $rootScope, $http){
       console.log($rootScope);
 
       get_data();
+      get_connections();
       //get_countries_php();
     }
 
@@ -22,6 +23,15 @@ function DashboardController($scope, $rootScope, $http){
         alert(response.status);
       }
     };
+
+    var get_connections = function (){
+      $http.get('/connections', config).then(function(response){
+        $scope.connections = response.data;
+      }),function(response){
+        alert(response.status);
+      }
+    };
+
 
    
 

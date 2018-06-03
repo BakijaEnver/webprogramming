@@ -94,8 +94,9 @@ app.post('/register', function(request, response){
 
 app.post('/connect_user', function(request, response){
    var message = request.body;
+   var topic = message.message.substr(0,10);
 
-    db.collection("connections").save( { "advertiser" : usr , "user" : message.user , "message" : message.message} , function(error) {
+    db.collection("connections").save( { "advertiser" : usr , "user" : message.user , "message" : message.message, "topic" : topic} , function(error) {
       if (error){
         throw error;
       }
@@ -105,8 +106,9 @@ app.post('/connect_user', function(request, response){
 
 app.post('/connect_provider', function(request, response){
   var message = request.body;
+  var topic = message.message.substr(0,10);
 
-   db.collection("connections").save( { "advertiser" : message.advertiser , "user" : usr , "message" : message.message} , function(error) {
+   db.collection("connections").save( { "advertiser" : message.advertiser , "user" : usr , "message" : message.message, "topic" : topic} , function(error) {
      if (error){
        throw error;
      }
@@ -131,6 +133,14 @@ app.get('/data', function(request, response){
     if (err) return console.log(err);
     response.setHeader('Content-Type', 'application/json');
     response.send(info);
+  })
+});
+
+app.get('/connections', function(request, response){
+  db.collection('connections').find({ $or: [ { advertiser : usr}, {user : usr} ] }).toArray((err, connections) => {
+    if (err) return console.log(err);
+    response.setHeader('Content-Type', 'application/json');
+    response.send(connections);
   })
 });
 
