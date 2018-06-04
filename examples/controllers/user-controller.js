@@ -1,4 +1,4 @@
-function UserController($scope, $http, $location, $mdDialog, $mdToast){
+function UserController($scope, $http, $location, $mdDialog, $mdToast, $timeout){
     console.log("Hello from user controller");
 
     var config = {headers:  {
@@ -24,7 +24,10 @@ function UserController($scope, $http, $location, $mdDialog, $mdToast){
 
       $scope.update = function(credentials){
         $http.put('/update', credentials).then(function(response){
-
+          $scope.message_success = "Congratulations, you successfuly updated the user info.";
+          $timeout(function(){ 
+            $scope.message_success = "";
+          },3000);
         }),function(error){
             console.log(error);
         }
@@ -32,6 +35,7 @@ function UserController($scope, $http, $location, $mdDialog, $mdToast){
 
       $scope.delete_user = function(id){
         $http.delete('/delete/'+id, config).then(function(response){
+          
           localStorage.clear();
         }, function(error){
           console.log(error);
@@ -86,7 +90,7 @@ function UserController($scope, $http, $location, $mdDialog, $mdToast){
     
         $mdDialog.show(confirm).then(function(result) {
           $http.post('/connect_user', { 'user' : user.username , 'message' : result} ).then(function(response){
-            
+           
          }),function(error){
              console.log(error);
          }

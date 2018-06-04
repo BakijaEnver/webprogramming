@@ -67,7 +67,7 @@
                     <button type="submit" class="btn btn-primary pull-right" ng-click="update(user)" >Update Profile</button>
                     <button type="submit" class="btn btn-primary pull-right" ng-click="delete_user(user._id)" style="background-color: red; margin-right: 10px">Delete Profile</button>
                     <div class="clearfix"></div>
-                
+                   
                 </form>
                 
               </div>
@@ -76,3 +76,37 @@
     </div>
 </div>
 
+<script type="text/javascript">
+    /*     $(function(){				
+             $('#register').click(function(e){
+                 e.preventDefault();
+                 console.log('select_link clicked');
+                 
+                  $.ajax({
+                     dataType: 'jsonp',
+                     data: "data=addUser",						
+                     jsonp: 'callback',
+                     url: 'http://localhost:3200/register?callback=?',						
+                     success: function(data) {
+                         console.log('success');
+                         console.log(JSON.stringify(data));
+                     }
+                 });
+       var data = {};
+       data.title = "title";
+       data.message = "message";
+       
+       $.ajax({
+         type: 'POST',
+         data: JSON.stringify(data),
+             contentType: 'application/json',
+                     url: 'http://localhost:80/register',						
+                     success: function(data) {
+                         console.log('success');
+                         console.log(JSON.stringify(data));
+                     }
+                 });
+  
+             });				
+         });*/
+     </script>

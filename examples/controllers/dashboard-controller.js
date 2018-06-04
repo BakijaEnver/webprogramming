@@ -33,6 +33,14 @@ function DashboardController($scope, $rootScope, $http){
     };
 
 
+    $scope.addMethod = function(nesto){
+      
+      $http.put('/addmethod', { "method" : nesto} ).then(function(response){
+       
+      }),function(error){
+          console.log(error);
+      }
+    }
    
 
     

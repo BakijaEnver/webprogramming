@@ -17,31 +17,6 @@ app.use(express.urlencoded()); // to support URL-encoded bodies
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 
-providers = [
-  {'id':1,'name': 'Vodovod','reference_number': 'ASB15215'},
-  {'id':2,'name': 'Elektroprivreda','reference_number': 'SRAS8184'},
-  {'id':3,'name': 'Kablovska','reference_number': 'TSA9128'}
-]
-
-app.use('/rest/v1/',function(request,response,next){
-  jwt.verify(request.get('JWT'), jwt_secret, function(error, decoded) {      
-    if (error) {
-      response.status(401).send('Unauthorized access');    
-    } else {
-      db.collection("users").findOne({'_id': new MongoId(decoded._id)}, function(error, user) {
-        if (error){
-          throw error;
-        }else{
-          if(user){
-            next();
-          }else{
-            response.status(401).send('Credentials are wrong.');
-          }
-        }
-      });
-    }
-  });  
-})
 
 var usr = "";
 app.post('/login', function(request, response){
@@ -92,11 +67,22 @@ app.post('/register', function(request, response){
 
 });
 
+app.post('/addtrans', function(request, response){
+  var trans = request.body;
+
+  db.collection("transactions").save( { "transactor" : usr, "receiver" : trans.user, "amount" : trans.amount, "description" : trans.description } , function(error) {
+    if (error){
+      throw error;
+    }
+  });  
+  
+});
+
 app.post('/connect_user', function(request, response){
    var message = request.body;
    var topic = message.message.substr(0,10);
 
-    db.collection("connections").save( { "advertiser" : usr , "user" : message.user , "message" : message.message, "topic" : topic} , function(error) {
+    db.collection("connections").save( { "advertiser" : usr , "user" : message.user , "message" : message.message, "topic" : topic , "paymentmethod" : "none"} , function(error) {
       if (error){
         throw error;
       }
@@ -108,7 +94,7 @@ app.post('/connect_provider', function(request, response){
   var message = request.body;
   var topic = message.message.substr(0,10);
 
-   db.collection("connections").save( { "advertiser" : message.advertiser , "user" : usr , "message" : message.message, "topic" : topic} , function(error) {
+   db.collection("connections").save( { "advertiser" : message.advertiser , "user" : usr , "message" : message.message, "topic" : topic  , "paymentmethod" : "none"} , function(error) {
      if (error){
        throw error;
      }
@@ -144,6 +130,14 @@ app.get('/connections', function(request, response){
   })
 });
 
+app.get('/gettransactions', function(request, response){
+  db.collection('transactions').find({ $or: [ { transactor : usr}, {receiver : usr} ] }).toArray((err, transactions) => {
+    if (err) return console.log(err);
+    response.setHeader('Content-Type', 'application/json');
+    response.send(transactions);
+  })
+});
+
 
 app.get('/users/:family/:interests/:location/:age', function(request, response){
   db.collection('users').find( { $and: [ {type : "regular"} , { $or: [ {familystatus : request.params.family }, {location : request.params.location} , {interests : request.params.interests} , {age : {$eq : parseInt( request.params.age)}} ] } ]  } ).toArray((err, users) => {
@@ -173,6 +167,16 @@ app.put('/update', function(request, response){
   })
 });
 
+app.put('/addmethod', function(request, response){
+  method = request.body.method;
+  db.collection('connections').updateMany( { $or: [ { advertiser : usr}, {user : usr} ]  }, {
+    $set: { paymentmethod : method}
+  }, (err, result) => {
+    if (err) return res.send(err);
+    response.send('OK');
+  })
+});
+
 
 
 app.delete('/delete/:id', function(request, response){
@@ -182,11 +186,19 @@ app.delete('/delete/:id', function(request, response){
   })
 });
 
+app.delete('/deletetrans/:id', function(request, response){
+  db.collection('transactions').findOneAndDelete({_id: new MongoId(request.params.id)}, (err, result) => {
+    if (err) return res.send(500, err)
+    response.send('OK');
+  })
+});
+
+
 
 
 MongoClient.connect('mongodb://localhost:27017/webprogramming', (err, database) => {
   if (err) return console.log(err)
   db = database
-  app.listen(3000, () => console.log('Example app listening on port 3000!'))
+  app.listen(80, () => console.log('Example app listening on port 3000!'))
 })
 
